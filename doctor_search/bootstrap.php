@@ -80,6 +80,8 @@ function dcsdb_install()
       city VARCHAR(128)		DEFAULT '' NOT NULL,
       state VARCHAR(32)		DEFAULT '' NOT NULL,
       zipcode VARCHAR(32)	DEFAULT '' NOT NULL,
+      latitude FLOAT(11,11) DEFAULT 0  NOT NULL,
+      longitude FLOAT(11,11) DEFAULT 0 NOT NULL,
       UNIQUE KEY id (id)
         );";
 
