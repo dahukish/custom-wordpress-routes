@@ -88,3 +88,5 @@ function dcsdb_install()
 
    add_option( "dcs_db_version", $dcs_db_version );
 }
+
+register_activation_hook( __FILE__, 'dcsdb_install' );
