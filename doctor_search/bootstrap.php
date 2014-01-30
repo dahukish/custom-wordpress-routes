@@ -7,15 +7,15 @@ require_once(CDS_PLUGIN_BASE.'/doctor_search/vendor/pimple/lib/Pimple.php');
 #
 # TODO autoload
 #
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/input/form.php');
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/routes/router.php');
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/utility/server/request.php');
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/utility/server/response.php');
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/utility/service/di.php');
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/helper/templates/Locations.php');
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/utility/data/LocationQueryInterface.php');
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/utility/data/LocationQuery.php');
-require_once(CDS_PLUGIN_BASE.'/doctor_search/classes/metabox/locations.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Input/Form.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Routes/Router.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Utility/Server/Request.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Utility/Server/Response.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Utility/Service/DI.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Helper/Templates/Locations.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Utility/Data/LocationQueryInterface.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Utility/Data/LocationQuery.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Metabox/Locations.php');
 
 add_action('send_headers', array('\Routes\Router','loadRoutes'));
 

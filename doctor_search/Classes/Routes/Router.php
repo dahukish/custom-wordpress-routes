@@ -44,8 +44,8 @@ class Router
         };
 
         static::$services['DI']['inputFactory'] = function () {
-            return function (\Utility\Server\Request $request) {
-                return new \Input\Form($request);
+            return function (Request $request) {
+                return new Form($request);
             };
         };
 
@@ -77,7 +77,7 @@ class Router
         };
 
         static::$services['DI']['postQueryFilter'] = function ($c) {
-            return function (\Utility\Server\Request $request, array $query_args, $post_type='doctors') use ($c) {
+            return function (Request $request, array $query_args, $post_type='doctors') use ($c) {
                 $factory = $c['inputFactory'];
 
                 $input = $factory($request);
@@ -118,7 +118,7 @@ class Router
         };
 
         static::$services['DI']['queryFilter'] = function ($c) {
-            return function (\Utility\Server\Request $request, array $query_args) use ($c) {
+            return function (Request $request, array $query_args) use ($c) {
 
                 if (($post_token = $request->getToken('([-\w]+)\/find-a-physician')) !== false) {
 
@@ -208,7 +208,7 @@ class Router
 
     }
 
-    private static function matchRoute(\Utility\Server\Request $request, $http_verb, $route_path, $call_back, array $inject = array(), $inc_request=false)
+    private static function matchRoute(Request $request, $http_verb, $route_path, $call_back, array $inject = array(), $inc_request=false)
     {
         if ($request->equalsHttpVerb($http_verb) && $request->equalsUri($route_path)) {
             if ($call_back instanceof \Closure) {
