@@ -1,6 +1,6 @@
 <?php namespace Metabox;
 
-class locations
+class Locations
 {
     public function getLocationHtml()
     {

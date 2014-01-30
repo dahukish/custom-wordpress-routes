@@ -1,13 +1,11 @@
-<?php
-
-namespace routes;
+<?php namespace Routes;
 
 use Utility\Service\DI;
 use Utility\Server\Request;
 use Utility\Server\Response;
 use Input\Form;
 
-class router
+class Router
 {
 
     private static $services = array();
@@ -144,7 +142,7 @@ class router
                                 )
                         );
 
-                        $query_args['post_type'] = $token;
+                        $query_args['post_type'] = $post_token;
 
                         if (($post_token = $request->getToken('providers\/([-\w]+)')) !== false) {
                             $query_args['post_type'] = $post_token;
@@ -161,7 +159,6 @@ class router
 
     public static function loadRoutes()
     {
-
         # hack to setup services
         static::preLoad();
 

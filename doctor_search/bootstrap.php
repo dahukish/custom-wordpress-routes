@@ -60,18 +60,17 @@ add_action( 'add_meta_boxes', 'add_location_metaboxes' );
 
 function add_location_metaboxes()
 {
-     add_meta_box('wpt_office_locations', 'Office Location(s)', array('\Metabox\Locations','getLocationHtml'), 'doctors', 'normal', 'default');
+  add_meta_box('wpt_office_locations', 'Office Location(s)', array('\Metabox\Locations','getLocationHtml'), 'doctors', 'normal', 'default');
 }
 
 # add custom dbTable logic
-
 global $dcs_db_version;
 $dcs_db_version = "1.0";
 
 function dcsdb_install()
 {
-   global $wpdb;
-   global $dcs_db_version;
+  global $wpdb;
+  global $dcs_db_version;
 
    # MU Plugins don't get activation hooks so this is a hack
    if (get_option( "dcsdb_table_created" ) === false) {
