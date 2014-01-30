@@ -1,0 +1,135 @@
+.type-doctors
+{
+	float:left;
+	clear:left;
+	position:relative;
+	width: 85%;
+	margin-top: 1em;
+	height:33em;
+}
+
+.entry.doctors 
+{
+	float:left;
+	position:relative;
+	clear:left;
+	width: 100%;
+	height: 100%;
+}
+
+.entry.doctors header
+{
+	float:left;
+	clear:left;
+}
+
+.entry.doctors header h1 a
+{
+	float:left;
+	clear:left;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.entry.doctors .col-header
+{
+ 	float:left;
+ 	position:relative;
+ 	font-size: 1.1em;
+ 	font-weight: bold;
+}
+
+.entry.doctors img
+{
+	float:left;
+	position:relative;
+	display:inline-block;
+	top:0em;
+	left:0em;
+	clear:left;
+}
+
+.entry.doctors .column
+{
+	float:left;
+	position: relative;
+	width:14.5em;
+}
+
+.entry.doctors .column ul
+{
+	float:left;
+	clear:left;
+	position:relative;
+	list-style: none;
+}
+
+.entry.doctors .column li 
+{
+	float:left;
+	clear:left;
+	position:relative;
+}
+
+.entry.doctors .column.second
+{
+	left:3em;
+	top:-12.5em;
+}
+
+.entry.doctors .column.third
+{
+	left:8em;
+	top:-12.5em;
+}
+
+.entry.doctors .education
+{
+	 clear:left;
+}
+
+.entry.doctors .specialites
+{
+
+}
+
+.entry.doctors .locations
+{
+
+}
+
+/**********************/
+/* Search Form */
+/**********************/
+
+.doctors-search
+{
+	float:left;
+	padding-bottom: 0.15em;
+}
+
+.doctors-search fieldset
+{
+	float:left;
+	width:100%;
+	margin-top: 0.5em;
+}
+
+.doctors-search label,
+.doctors-search input,
+.doctors-search select
+{
+	float:left;
+	clear:left;
+	margin-top: 0.25em;
+}
+
+.doctors-search .all-doctors
+{
+	float:left;
+	position:relative;
+	display:inline-block;
+	clear:left;
+	margin-top:1em;
+	z-index: 4000;
+}
