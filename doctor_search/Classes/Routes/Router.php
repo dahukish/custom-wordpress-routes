@@ -176,6 +176,8 @@ class Router
                 'responseObj',
             );
 
+        $args_ajax = array( 'inputFactory' );
+
         $controllerLight = function ($responseObj) {
             $responseObj->setHeader('HTTP/1.0 200 OK');
             $responseObj->setTemplateData(array('title'=>'Find A Physician'));
@@ -205,6 +207,24 @@ class Router
         static::matchRoute($request, 'GET', 'newyork-providers/doctors', $contollerNorm, $args, true);
 
         static::matchRoute($request, 'GET', 'doctors/all', $contollerNorm, $args, true);
+
+        static::matchRoute($request, 'GET', 'doctor-locations/add', function ($request, $inputFactory) {
+            $input = $inputFactory($request);
+            var_dump($input);
+            die('boom1');
+        }, $args_ajax, true);
+
+        static::matchRoute($request, 'GET', 'doctor-locations/save', function ($request, $inputFactory) {
+            $input = $inputFactory($request);
+            var_dump(func_get_args());
+            die('boom2');
+        }, $args_ajax, true);
+
+        static::matchRoute($request, 'GET', 'doctor-locations/remove', function ($request, $inputFactory) {
+            $input = $inputFactory($request);
+            var_dump(func_get_args());
+            die('boom3');
+        }, $args_ajax, true);
 
     }
 

@@ -8,6 +8,7 @@ require_once(CDS_PLUGIN_BASE.'/doctor_search/vendor/pimple/lib/Pimple.php');
 # TODO autoload
 #
 require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Input/Form.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Helper/Html/Form.php');
 require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Routes/Router.php');
 require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Utility/Server/Request.php');
 require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Utility/Server/Response.php');
@@ -107,5 +108,11 @@ function dcs_admin_styles()
 {
     wp_register_style( 'dcs_admin_stylesheet', CDS_PLUGIN_URL.'/styles/doctor_admin.css');
     wp_enqueue_style( 'dcs_admin_stylesheet' );
+
+    // wp_register_script( 'dcs_admin_ajax', CDS_PLUGIN_URL.'/scripts/ajax.js');
+    wp_register_script( 'dcs_admin_js', CDS_PLUGIN_URL.'/scripts/dcs_admin.js');
+    wp_enqueue_script( 'jquery' );
+    // wp_enqueue_script( 'dcs_admin_ajax', array('jquery'));
+    wp_enqueue_script( 'dcs_admin_js', array('jquery'));
 }
 add_action( 'admin_enqueue_scripts', 'dcs_admin_styles' );

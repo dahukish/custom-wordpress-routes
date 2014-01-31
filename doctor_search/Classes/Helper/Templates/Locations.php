@@ -43,9 +43,9 @@ class Locations
         return $fieldName.'_'.$this->item_count;
     }
 
-    public function value($fieldName)
+    public function value($fieldName, $default=null)
     {
-        return  $fieldName;
+        return (is_null($default))? $fieldName : $default;
     }
 
 }
