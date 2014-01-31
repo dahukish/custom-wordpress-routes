@@ -159,8 +159,6 @@ class Router
 
     public static function loadRoutes()
     {
-        die('die');
-
         # hack to setup services
         static::preLoad();
 

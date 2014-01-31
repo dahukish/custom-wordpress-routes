@@ -30,7 +30,7 @@ $(document).ready(function(){
 		return false;
 	};
 
-	var ajax_obj = new AjaxObj(href, params, 'GET', 'json', ajax_cb, ajax_fail_cb);
+	var ajax_obj = new AjaxObj(href, params, 'POST', 'json', ajax_cb, ajax_fail_cb);
 
 	ajax_obj.execute();
   	e.preventDefault();
