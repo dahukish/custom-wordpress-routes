@@ -4,6 +4,7 @@ use Utility\Service\DI;
 use Utility\Server\Request;
 use Utility\Server\Response;
 use Input\Form;
+use Helper\Validation;
 
 class Router
 {
@@ -46,6 +47,12 @@ class Router
         static::$services['DI']['inputFactory'] = function () {
             return function (Request $request) {
                 return new Form($request);
+            };
+        };
+
+        static::$services['DI']['validationFactory'] = function() {
+            return function(Form $input) {
+                return new Validation($input);
             };
         };
 
@@ -114,6 +121,34 @@ class Router
                 }
 
                 return false;
+            };
+        };
+
+        static::$services['DI']['locationTemplateFactory'] = function($c) {
+            return function($itemCount) {
+                $itemCount++;
+                $html = '<tr id="ecpt_field_'.$itemCount.'" data-scope="location_item" data-id="'.$itemCount.'">';
+                $html .= '<th style="width:20%">';
+                $html .= '<label>Address '.$itemCount.'</label>';
+                $html .= '</th>';
+                $html .= '<td>';
+                $html .= '<div class="ecpt_repeatable_wrapper">';
+                $html .= '<label for="dcbs_street_'.$itemCount.'">Street</label>';
+                $html .= '<input type="text" class="" name="dcbs_street_'.$itemCount.'" id="dcbs_street_'.$itemCount.'" value="" size="30" style="width:80%">';
+                $html .= '<label for="dcbs_city_'.$itemCount.'">City</label>';
+                $html .= '<input type="text" class="" name="dcbs_city_'.$itemCount.'" id="dcbs_city_'.$itemCount.'" value="" size="30" style="width:80%">';
+                $html .= '<label for="dcbs_state_'.$itemCount.'">State</label>';
+                $html .= '<select name="dcbs_state_'.$itemCount.'" id="dcbs_state_'.$itemCount.'">';
+                $html .= '<option value="MD">Maryland</option><option value="NY">New York</option><option value="DC">District of Columbia</option><option value="VA">Virginia</option>';
+                $html .= '</select>';
+                $html .= '<label for="dcbs_zipcode_'.$itemCount.'">Zipcode</label>';
+                $html .= '<input type="text" class="" name="dcbs_zipcode_'.$itemCount.'" id="dcbs_zipcode_'.$itemCount.'" value="" size="30" style="width:80%">';
+                $html .= '<a href="http://treatingpain.staging.wpengine.com/wp-admin/doctor-locations/remove" class="button-secondary" data-action="remove-location">x</a>';
+                $html .= '<a href="http://treatingpain.staging.wpengine.com/wp-admin/doctor-locations/save" class="button-secondary" data-action="save-location">Save Location</a>';
+                $html .= '</div>';
+                $html .= '</td>';
+                $html .= '</tr>';
+                return $html;
             };
         };
 
@@ -208,19 +243,32 @@ class Router
 
         static::matchRoute($request, 'GET', 'doctors/all', $contollerNorm, $args, true);
 
-        static::matchRoute($request, 'POST', 'wp-admin/doctor-locations/add', function ($request, $inputFactory) {
+        static::matchRoute($request, 'POST', 'wp-admin/doctor-locations/add', function ($request, $inputFactory, $locationTemplateFactory) {
             $input = $inputFactory($request);
-            var_dump($input);
-            die('boom1');
-        }, $args_ajax, true);
+            header('HTTP/1.0 200 OK');
+            $result = array('status' => true);
+            $result['msg'] = $locationTemplateFactory($input->getValue('itemCount'));
+            echo json_encode($result);
+            exit;
+        }, array_merge($args_ajax, array('locationTemplateFactory')), true);
 
-        static::matchRoute($request, 'POST', 'wp-admin/doctor-locations/save', function ($request, $inputFactory) {
+        static::matchRoute($request, 'POST', 'wp-admin/doctor-locations/save', function ($request, $inputFactory, $validationFactory) {
+            header('HTTP/1.0 200 OK');
             $input = $inputFactory($request);
-            var_dump(func_get_args());
-            die('boom2');
-        }, $args_ajax, true);
+            $val = $validationFactory($input);
+
+            if($val->isValid()) {
+                global $wpdb;
+                $result = array('status'=>true, 'msg'=>'recorded added successful.');
+            } else {
+                $result = array('status'=>false, 'msg'=>$val->errors());
+            }
+            echo json_encode($result);
+            exit;
+        }, array_merge($args_ajax, array('validationFactory')), true);
 
         static::matchRoute($request, 'POST', 'wp-admin/doctor-locations/remove', function ($request, $inputFactory) {
+            header('HTTP/1.0 200 OK');
             $input = $inputFactory($request);
             var_dump(func_get_args());
             die('boom3');
@@ -237,10 +285,14 @@ class Router
                     $dep = static::$services['DI']->get($inject); # TODO fix this coupling...
 
                     # inject the original request object into the the closure
-                    if($inc_request) array_unshift($dep, $request);
-
+                    if ($inc_request) {
+                        array_unshift($dep, $request);
+                    }
+                    // var_dump($dep); exit;
                     call_user_func_array($call_back, $dep);
-                } else $call_back();
+                } else {
+                    $call_back();
+                }
             }
         }
     }

@@ -8,6 +8,7 @@ require_once(CDS_PLUGIN_BASE.'/doctor_search/vendor/pimple/lib/Pimple.php');
 # TODO autoload
 #
 require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Input/Form.php');
+require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Helper/Validation.php');
 require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Helper/Html/Form.php');
 require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Routes/Router.php');
 require_once(CDS_PLUGIN_BASE.'/doctor_search/Classes/Utility/Server/Request.php');
