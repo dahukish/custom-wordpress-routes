@@ -25,8 +25,8 @@ $locations->fetchLocations(new LocationQuery());
                     <?php echo Form::select($locations->unique_field('dcbs_state'), LocationsViewHelper::getStates(), $locations->value('dcbs_state'), array()); ?>
                     <label for="<?=$locations->unique_field('dcbs_zipcode')?>">Zipcode</label>
                     <input type="text" class="" name="<?=$locations->unique_field('dcbs_zipcode')?>" id="<?=$locations->unique_field('dcbs_zipcode')?>" value="<?=$locations->value('dcbs_zipcode')?>" size="30" style="width:80%">
-                    <a href="/doctors/locations/remove" class="button-secondary" data-action="remove-location">x</a>
-                    <a href="/doctors/locations/save" class="button-secondary" data-action="save-location">Save Location</a>
+                    <a href="http://treatingpain.staging.wpengine.com/wp-admin/doctor-locations/remove" class="button-secondary" data-action="remove-location">x</a>
+                    <a href="http://treatingpain.staging.wpengine.com/wp-admin/doctor-locations/save" class="button-secondary" data-action="save-location">Save Location</a>
                  </div>
 
             </td>
@@ -35,5 +35,5 @@ $locations->fetchLocations(new LocationQuery());
         <?php } while ($locations->hasLocations()); ?>
     </tbody>
 </table>
-<a href="/doctors/locations/add" class="button-primary" data-action="add-location">Add New</a>
+<a href="http://treatingpain.staging.wpengine.com/wp-admin/doctors-locations/add" class="button-primary" data-action="add-location">Add New</a>
 </div>

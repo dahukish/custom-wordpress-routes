@@ -67,6 +67,8 @@ AjaxObj.prototype.execute = function(path,params,action_type,return_type,s_cb_fu
 
 	var deferreds = [];
 
+	console.log(_path);
+
 	deferreds.push(($.ajax({
 	  type: _action_type,
 	  url: _path,

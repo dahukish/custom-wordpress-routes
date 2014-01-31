@@ -159,6 +159,8 @@ class Router
 
     public static function loadRoutes()
     {
+        die('die');
+
         # hack to setup services
         static::preLoad();
 
@@ -208,19 +210,19 @@ class Router
 
         static::matchRoute($request, 'GET', 'doctors/all', $contollerNorm, $args, true);
 
-        static::matchRoute($request, 'GET', 'doctor-locations/add', function ($request, $inputFactory) {
+        static::matchRoute($request, 'POST', 'wp-admin/doctor-locations/add', function ($request, $inputFactory) {
             $input = $inputFactory($request);
             var_dump($input);
             die('boom1');
         }, $args_ajax, true);
 
-        static::matchRoute($request, 'GET', 'doctor-locations/save', function ($request, $inputFactory) {
+        static::matchRoute($request, 'POST', 'wp-admin/doctor-locations/save', function ($request, $inputFactory) {
             $input = $inputFactory($request);
             var_dump(func_get_args());
             die('boom2');
         }, $args_ajax, true);
 
-        static::matchRoute($request, 'GET', 'doctor-locations/remove', function ($request, $inputFactory) {
+        static::matchRoute($request, 'POST', 'wp-admin/doctor-locations/remove', function ($request, $inputFactory) {
             $input = $inputFactory($request);
             var_dump(func_get_args());
             die('boom3');
